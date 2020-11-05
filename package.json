@@ -3,6 +3,7 @@
     "version": "1.1.1",
     "description": "A source plugin for Gatsby that allows reading data from Google Sheets.",
     "main": "index.js",
+    "repository": "https://github.com/cezarcarvalhaes/gatsby-source-google-sheets",
     "scripts": {
         "build": "babel src --out-dir .",
         "watch": "babel -w src --out-dir .",
