@@ -76,8 +76,10 @@ const guessColumnsDataTypes = rows =>
   ).reduce((columnTypes, row) => {
     _.forEach(row, (type, columnName) => {
       // skip nulls, they should have no effect
-      if (type === 'null') { return; }
-      
+      if (type === "null") {
+        return;
+      }
+
       const currentTypeCandidate = columnTypes[columnName];
       if (!currentTypeCandidate) {
         // no discovered type yet -> use the one from current item
@@ -88,7 +90,7 @@ const guessColumnsDataTypes = rows =>
       }
     });
     return columnTypes;
-  }, {})
+  }, {});
 
 const fetchData = async (spreadsheetId, worksheetTitle, credentials) => {
   const spreadsheet = await getSpreadsheet(spreadsheetId, credentials);
