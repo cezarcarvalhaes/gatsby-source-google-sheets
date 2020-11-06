@@ -12,34 +12,44 @@ const getSpreadsheet = async (spreadsheetId, credentials) => {
   }
 };
 
-const getWorksheetByTitle = (spreadsheet, worksheetTitle) => {
+const getWorksheetByTitle = async (spreadsheet, worksheetTitle) => {
   try {
     await spreadsheet.loadInfo();
     const targetSheet = spreadsheet.sheetsByTitle[worksheetTitle];
-     if (!(!targetSheet || typeof targetSheet === "undefined")) {
-      Promise.reject(new Error(`Found no worksheet with the title ${worksheetTitle}`));
-      return;
-     }
-     return targetSheet;
+    if (!(!targetSheet || typeof targetSheet === "undefined")) {
+      return Promise.reject(new Error(`Found no worksheet with the title ${worksheetTitle}`));
+    }
+    return targetSheet;
   } catch (error) {
     Promise.reject(error);
   }
-}
+};
 
-const getRows = (worksheet, options = {}) => {
+const getRows = async (worksheet, options = {}) => {
   try {
     const rows = await worksheet.getRows(options);
     return rows;
   } catch (error) {
     Promise.reject(error);
   }
-}
+};
 
 const cleanRows = (rows) => {
-  const columnTypes = guessColumnsDataTypes(rows);
-  return rows.map((r) =>
+  const trimmedRows = rows.map((r) =>
+    _.omit(r, [
+      "_sheet",
+      "_rawProperties",
+      "_cells",
+      "_rowMetadata",
+      "columnMetadata",
+      "headerValues",
+      "_rowNumber",
+      "_rawData",
+    ])
+  );
+  const columnTypes = guessColumnsDataTypes(trimmedRows);
+  return trimmedRows.map((r) =>
     _.chain(r)
-      .omit(["_sheet", "_rawProperties", "_cells", "_rowMetadata", "columnMetadata", "headerValues", "_rowNumber", "_rawData"])
       .mapKeys((v, k) => _.camelCase(k))
       .mapValues((val, key) => {
         switch (columnTypes[key]) {
@@ -59,7 +69,6 @@ const cleanRows = (rows) => {
 const guessColumnsDataTypes = (rows) =>
   _.flatMap(rows, (r) =>
     _.chain(r)
-      .omit(["_sheet", "_rawProperties", "_cells", "_rowMetadata", "columnMetadata", "headerValues", "_rowNumber", "_rawData"])
       .mapKeys((v, k) => _.camelCase(k))
       .mapValues((val) => {
         // try to determine type based on the cell value
