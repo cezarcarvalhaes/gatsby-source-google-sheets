@@ -2,7 +2,16 @@ const { cleanRows, guessColumnsDataTypes } = require("../fetch-sheet.js");
 
 describe("cleaning rows from GSheets response", () => {
   it("removes keys that don't correspond to column names", () => {
-    const badKeys = ["_xml", "app:edited", "save", "del", "_links"];
+    const badKeys = [
+      "_sheet",
+      "_rawProperties",
+      "_cells",
+      "_rowMetadata",
+      "columnMetadata",
+      "headerValues",
+      "_rowNumber",
+      "_rawData",
+    ];
     const row = badKeys.reduce(
       (prev, curr) => ({
         ...prev,
