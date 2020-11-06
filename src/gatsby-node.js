@@ -9,6 +9,7 @@ exports.sourceNodes = async (
   console.log("FETCHING SHEET");
   let rows = await fetchSheet(spreadsheetId, worksheetTitle, credentials);
   console.log(`${rows.length} rows returned from ${worksheetTitle}.`);
+  let i = 0;
   rows.forEach((r) => {
     const nodeData = {
       id: createNodeId(`"gsheet"-${JSON.stringify(r)}-${i}`),
@@ -24,5 +25,6 @@ exports.sourceNodes = async (
         },
       })
     );
+    i += 1;
   });
 };

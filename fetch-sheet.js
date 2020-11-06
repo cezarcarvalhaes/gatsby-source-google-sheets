@@ -13,7 +13,9 @@ var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var GoogleSpreadsheet = require("google-spreadsheet");
+var _require = require("google-spreadsheet"),
+    GoogleSpreadsheet = _require.GoogleSpreadsheet;
+
 var _ = require("lodash");
 
 var getSpreadsheet = function () {
@@ -64,7 +66,7 @@ var getWorksheetByTitle = function () {
           case 3:
             targetSheet = spreadsheet.sheetsByTitle[worksheetTitle];
 
-            if (!targetSheet || typeof targetSheet === "undefined") {
+            if (!(!targetSheet || typeof targetSheet === "undefined")) {
               _context2.next = 6;
               break;
             }

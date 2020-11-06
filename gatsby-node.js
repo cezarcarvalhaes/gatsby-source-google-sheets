@@ -25,7 +25,7 @@ exports.sourceNodes = function () {
     var spreadsheetId = _ref2.spreadsheetId,
         worksheetTitle = _ref2.worksheetTitle,
         credentials = _ref2.credentials;
-    var createNode, rows;
+    var createNode, rows, i;
     return _regenerator2.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -40,6 +40,8 @@ exports.sourceNodes = function () {
             rows = _context.sent;
 
             console.log(`${rows.length} rows returned from ${worksheetTitle}.`);
+            i = 0;
+
             rows.forEach(function (r) {
               var nodeData = {
                 id: createNodeId(`"gsheet"-${JSON.stringify(r)}-${i}`),
@@ -52,9 +54,10 @@ exports.sourceNodes = function () {
                   contentDigest: createContentDigest(nodeData)
                 }
               })));
+              i += 1;
             });
 
-          case 7:
+          case 8:
           case "end":
             return _context.stop();
         }

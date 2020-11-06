@@ -16,7 +16,7 @@ const getWorksheetByTitle = async (spreadsheet, worksheetTitle) => {
   try {
     await spreadsheet.loadInfo();
     const targetSheet = spreadsheet.sheetsByTitle[worksheetTitle];
-    if (!(!targetSheet || typeof targetSheet === "undefined")) {
+    if (!targetSheet || typeof targetSheet === "undefined") {
       return Promise.reject(new Error(`Found no worksheet with the title ${worksheetTitle}`));
     }
     return targetSheet;
