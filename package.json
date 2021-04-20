@@ -1,6 +1,6 @@
 {
     "name": "@cezarcarvalhaes/gatsby-source-google-sheets",
-    "version": "1.2.5",
+    "version": "2.0.1",
     "description": "A source plugin for Gatsby that allows reading data from Google Sheets.",
     "main": "index.js",
     "repository": "https://github.com/cezarcarvalhaes/gatsby-source-google-sheets",
