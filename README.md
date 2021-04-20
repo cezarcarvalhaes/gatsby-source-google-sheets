@@ -3,6 +3,8 @@
 ### NOTE: This package was originally forked from [gatsby-source-google-sheets](https://github.com/brandonmp/gatsby-source-google-sheets). 
 This package was forked and retooled with an upgraded `google-spreadsheet` module that uses Google Sheets API v4, as v3 will be officially retired January 26th, 2021. 
 
+### V2: this package has been updated to work with Gatsby v3. For Gatsby v2 and under, please see v1.
+
 ---
 
 This source plugin for [Gatsby JS](https://github.com/gatsbyjs/gatsby) will turn any Google Sheets worksheet into a GraphQL type for build-time consumption. 

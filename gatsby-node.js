@@ -19,7 +19,7 @@ var _ = require("lodash");
 
 exports.sourceNodes = function () {
   var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(_ref, _ref2) {
-    var boundActionCreators = _ref.boundActionCreators,
+    var actions = _ref.actions,
         createContentDigest = _ref.createContentDigest,
         createNodeId = _ref.createNodeId;
     var spreadsheetId = _ref2.spreadsheetId,
@@ -30,7 +30,7 @@ exports.sourceNodes = function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            createNode = boundActionCreators.createNode;
+            createNode = actions.createNode;
 
             console.log("FETCHING SHEET");
             _context.next = 4;

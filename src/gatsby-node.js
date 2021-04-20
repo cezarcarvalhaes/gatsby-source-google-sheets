@@ -2,10 +2,10 @@ const fetchSheet = require(`./fetch-sheet.js`).default;
 const _ = require("lodash");
 
 exports.sourceNodes = async (
-  { boundActionCreators, createContentDigest, createNodeId },
+  { actions, createContentDigest, createNodeId },
   { spreadsheetId, worksheetTitle, credentials }
 ) => {
-  const { createNode } = boundActionCreators;
+  const { createNode } = actions;
   console.log("FETCHING SHEET");
   let rows = await fetchSheet(spreadsheetId, worksheetTitle, credentials);
   console.log(`${rows.length} rows returned from ${worksheetTitle}.`);
